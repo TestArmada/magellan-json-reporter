@@ -42,7 +42,7 @@ Reporter.prototype = {
 
   _handleMessage: function (testRun, test, msg) {
     if (settings.verbose) {
-      console.log("json reporter received message: ");
+      console.log('JSON reporter received message: ');
       console.log(msg);
     }
     if (msg.type === 'worker-status') {
@@ -79,9 +79,15 @@ Reporter.prototype = {
       this.stats.failures = this.stats.failures + 1;
       // record err message & stack trace into report
       try {
-        testObject.err = JSON.parse(test.stdout).failures[0].err;
+        // remove ANSI color/style
+        var s = test.stdout.replace(/[\u001b\u009b][[()#;?]*(?:[0-9]{1,4}(?:;[0-9]{0,4})*)?[0-9A-ORZcf-nqry=><]/g, '')
+        // remove timestamp added by Magellan before each line
+        s = s.split('\n').map(function (line) {
+          return line.substr(9);
+        }).join('\n');
+        testObject.err = JSON.parse(s).failures[0].err;
       } catch (err) {
-        testObject.err = 'Unknown error (test was killed?)'
+        testObject.err = 'Unknown error (test was killed?): ' + err
       }
       this.failures.push(testObject);
     }
