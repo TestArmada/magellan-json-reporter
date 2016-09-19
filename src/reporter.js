@@ -81,6 +81,8 @@ Reporter.prototype = {
       try {
         // remove ANSI color/style
         var s = test.stdout.replace(/[\u001b\u009b][[()#;?]*(?:[0-9]{1,4}(?:;[0-9]{0,4})*)?[0-9A-ORZcf-nqry=><]/g, '')
+        // remove Magellan debug info
+        s = s.replace(/Magellan child process start/, '')
         // remove timestamp added by Magellan before each line
         s = s.split('\n').map(function (line) {
           return line.substr(9);
