@@ -31,3 +31,6 @@ Currently to see the error stack trace in JSON report:
 * add `--reporter json` into your `mocha.opts` file
 * use Magellan version >=8.6.0
 * Magellan option `--max_test_attempts` cannot be set to 1
+
+## License
+Documentation in this project is licensed under Creative Commons Attribution 4.0 International License. Full details available at https://creativecommons.org/licenses/by/4.0
