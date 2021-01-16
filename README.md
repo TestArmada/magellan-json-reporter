@@ -1,3 +1,7 @@
+# :warning::warning: DEPRECATED :warning::warning:
+
+This project, and it's related TestArmada projects, will no longer be supported. No further work from the owners will be done, and no PRs will be reviewed.
+
 # Magellan JSON Reporter Plugin
 
 This project is a plugin for Magellan which allows you to report test information in a JSON file.
